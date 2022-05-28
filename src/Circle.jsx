@@ -7,11 +7,10 @@ export default function App(props) {
                 id={props.id}
                 style={{ backgroundColor: `${props.colo}` }}
                 className="circle"
-                onClick={props.handleclick}
+                onClick={() => props.handledelete(props.id)}
             >
                 <p>{props.id}</p>
             </div>
-
         </div>
     );
 }

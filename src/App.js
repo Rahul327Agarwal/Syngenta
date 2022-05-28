@@ -8,27 +8,36 @@ export default function App() {
   const colors = ["yellow", "black", "red", "orange", "purple", "green"];
   const handleclick = (e) => {
     const id = document.getElementById("user_input").value;
-    console.log(id, typeof id);
-    setArr1([...arr1, id]);
+    if (id > 5 || id < 0)
+      alert("please enter the value between 0 to 5");
+    else if (arr1.includes(id))
+      alert("This box is already available in the div");
+    else
+      setArr1([...arr1, id]);
     const temp_arr = arr2.filter((item) => item != id);
     setArr2(temp_arr);
   };
 
+  const handledelete = (id) => {
+    setArr1(arr1.filter((item) => item != id));
+    const temp = [...arr2, id];
+    setArr2(temp.sort());
+  }
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <h1>Hello syngenta</h1>
+      <h2>Welcome to the assignment of syngenta!</h2>
       <input
         id="user_input"
         type="text"
-        placeholder="Enter the number between from 0 to 5"
+        placeholder="Enter the number  from 0 to 5"
       />
       <button onClick={handleclick}>Shoot</button>
 
       <div className="main_div">
         <div className="div1">
           {arr1.map((id) => {
-            return <Circle colo={colors[id]} id={id} />;
+            return <Circle colo={colors[id]} id={id} handledelete={handledelete} />;
           })}
         </div>
         <div className="div2">
