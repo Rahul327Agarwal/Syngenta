@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./index.css";
+import { useState } from "react";
+import Circle from "./Circle";
 
-function App() {
+export default function App() {
+  const [arr, setArr] = useState([]);
+  const colors = ["yellow", "black", "red"];
+  const handleclick = (e) => {
+    console.log(e.target.id);
+    setArr([...arr, e.target.id]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello CodeSandbox</h1>
+      <h2>Start editing to see some magic happen!</h2>
+      <div className="main_div">
+        <div className="div1">
+          {arr.map((id) => {
+            return <Circle colo={colors[id]} id={id} />
+          })}
+        </div>
+        <div className="div2">
+          {colors.map((color, index) => (
+            <Circle colo={color} id={index} handleclick={handleclick} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
-
-export default App;
