@@ -2,6 +2,7 @@ import "./styles.css";
 import { useState } from "react";
 import Circle from "./Circle";
 
+// function to generate random color.
 function generateRandomColor() {
   let maxVal = 0xFFFFFF; // 16777215
   let randomNumber = Math.random() * maxVal;
@@ -11,12 +12,14 @@ function generateRandomColor() {
   return `#${randColor.toUpperCase()}`
 }
 
+// array which will store the random generated colors.
 const colors = [];
 
 export default function App() {
   const [arr1, setArr1] = useState([]);
   const [arr2, setArr2] = useState([0, 1, 2, 3, 4, 5]);
 
+  // function to handle when user hit the shoot button
   const handleclick = () => {
     const id = parseInt(document.getElementById("user_input").value);
     if(isNaN(id))
@@ -37,12 +40,14 @@ export default function App() {
     document.getElementById("user_input").value="";
   };
 
+  // function to handle when user remove some circle from left div.
   const handledelete = (id) => {
     setArr1(arr1.filter((item) => item !== id));
     const temp = [...arr2, id];
     setArr2(temp.sort());
   }
 
+  // function to add random color to the circle.
   for (let i = 0; i < 6; i++) {
     while (true) {
       const color = generateRandomColor();
@@ -66,11 +71,13 @@ export default function App() {
       <button onClick={handleclick}>Shoot</button>
 
       <div className="main_div">
+        {/* first div that holds all the clicked circle */}
         <div className="div1">
           {arr1.map((id) => {
             return <Circle key={id} colo={colors[id]} id={id} handledelete={handledelete} />;
           })}
         </div>
+        {/* second div which holds all the available circle. */}
         <div className="div2">
           {arr2.map((index) => {
             return <Circle key={index} colo={colors[index]} id={index} handledelete={() => { }}/>
