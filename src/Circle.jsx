@@ -1,4 +1,4 @@
-import "./index.css";
+import "./styles.css";
 
 export default function App(props) {
     return (
@@ -8,7 +8,10 @@ export default function App(props) {
                 style={{ backgroundColor: `${props.colo}` }}
                 className="circle"
                 onClick={props.handleclick}
-            ></div>
+            >
+                <p>{props.id}</p>
+            </div>
+
         </div>
     );
 }
