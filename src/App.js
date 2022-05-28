@@ -18,20 +18,20 @@ export default function App() {
   const [arr2, setArr2] = useState([0, 1, 2, 3, 4, 5]);
 
   const handleclick = (e) => {
-    const id = document.getElementById("user_input").value;
+    const id = parseInt(document.getElementById("user_input").value);
     if (id > 5 || id < 0)
       alert("please enter the value between 0 to 5");
     else if (arr1.includes(id))
       alert("This box is already available in the div");
     else
       setArr1([...arr1, id].sort());
-    const temp_arr = arr2.filter((item) => item != id);
+    const temp_arr = arr2.filter((item) => item !==id);
     setArr2(temp_arr);
     document.getElementById("user_input").value="";
   };
 
   const handledelete = (id) => {
-    setArr1(arr1.filter((item) => item != id));
+    setArr1(arr1.filter((item) => item !== id));
     const temp = [...arr2, id];
     setArr2(temp.sort());
   }
