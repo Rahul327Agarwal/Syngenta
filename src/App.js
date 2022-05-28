@@ -17,8 +17,15 @@ export default function App() {
   const [arr1, setArr1] = useState([]);
   const [arr2, setArr2] = useState([0, 1, 2, 3, 4, 5]);
 
-  const handleclick = (e) => {
+  const handleclick = () => {
     const id = parseInt(document.getElementById("user_input").value);
+    if(isNaN(id))
+    {
+      alert("Please enter some numeric value before hitting the button");
+      document.getElementById("user_input").value = "";
+      return;
+    }
+    
     if (id > 5 || id < 0)
       alert("please enter the value between 0 to 5");
     else if (arr1.includes(id))
