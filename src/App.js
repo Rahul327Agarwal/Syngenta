@@ -1,11 +1,22 @@
 import "./styles.css";
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Circle from "./Circle";
+
+function generateRandomColor() {
+  let maxVal = 0xFFFFFF; // 16777215
+  let randomNumber = Math.random() * maxVal;
+  randomNumber = Math.floor(randomNumber);
+  randomNumber = randomNumber.toString(16);
+  let randColor = randomNumber.padStart(6, 0);
+  return `#${randColor.toUpperCase()}`
+}
+
+const colors = [];
 
 export default function App() {
   const [arr1, setArr1] = useState([]);
   const [arr2, setArr2] = useState([0, 1, 2, 3, 4, 5]);
-  const colors = ["yellow", "black", "red", "orange", "purple", "green"];
+
   const handleclick = (e) => {
     const id = document.getElementById("user_input").value;
     if (id > 5 || id < 0)
@@ -23,6 +34,12 @@ export default function App() {
     const temp = [...arr2, id];
     setArr2(temp.sort());
   }
+
+  for (let i = 0; i < 6; i++)
+    colors.push(generateRandomColor());
+
+
+
   return (
     <div className="App">
       <h1>Hello syngenta</h1>
@@ -41,9 +58,9 @@ export default function App() {
           })}
         </div>
         <div className="div2">
-          {arr2.map((index) => (
-            <Circle colo={colors[index]} id={index} />
-          ))}
+          {arr2.map((index) => {
+            return <Circle colo={colors[index]} id={index} />
+          })}
         </div>
       </div>
     </div>
