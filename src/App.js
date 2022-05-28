@@ -53,7 +53,7 @@ export default function App() {
       <input
         id="user_input"
         type="text"
-        placeholder="Enter the number  from 0 to 5"
+        placeholder="Enter the number from 0 to 5"
         
       />
       <button onClick={handleclick}>Shoot</button>
