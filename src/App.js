@@ -35,9 +35,14 @@ export default function App() {
     setArr2(temp.sort());
   }
 
-  for (let i = 0; i < 6; i++)
-    colors.push(generateRandomColor());
-
+  for (let i = 0; i < 6; i++) {
+    while (true) {
+      const color = generateRandomColor();
+      if (colors.includes(color)) continue;
+      colors.push(color);
+      break;
+    }
+  }
 
 
   return (
@@ -59,7 +64,7 @@ export default function App() {
         </div>
         <div className="div2">
           {arr2.map((index) => {
-            return <Circle colo={colors[index]} id={index} />
+            return <Circle colo={colors[index]} id={index} handledelete={() => { }}/>
           })}
         </div>
       </div>
