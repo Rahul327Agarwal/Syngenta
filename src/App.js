@@ -24,15 +24,15 @@ export default function App() {
     const id = parseInt(document.getElementById("user_input").value);
     if(isNaN(id))
     {
-      alert("Please enter some numeric value before hitting the button");
+      alert("😎 Please enter some numeric value before hitting the button 😎 ");
       document.getElementById("user_input").value = "";
       return;
     }
     
     if (id > 5 || id < 0)
-      alert("please enter the value between 0 to 5");
+      alert("🤠 please enter the value between 0 to 5 🤠");
     else if (arr1.includes(id))
-      alert("This box is already available in the div");
+      alert("😨 This box is already available in the div 😨");
     else
       setArr1([...arr1, id].sort());
     const temp_arr = arr2.filter((item) => item !==id);
