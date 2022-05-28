@@ -1,5 +1,5 @@
 import "./styles.css";
-import { useState, useMemo, useEffect } from "react";
+import { useState } from "react";
 import Circle from "./Circle";
 
 function generateRandomColor() {
@@ -24,9 +24,10 @@ export default function App() {
     else if (arr1.includes(id))
       alert("This box is already available in the div");
     else
-      setArr1([...arr1, id]);
+      setArr1([...arr1, id].sort());
     const temp_arr = arr2.filter((item) => item != id);
     setArr2(temp_arr);
+    document.getElementById("user_input").value="";
   };
 
   const handledelete = (id) => {
@@ -53,18 +54,19 @@ export default function App() {
         id="user_input"
         type="text"
         placeholder="Enter the number  from 0 to 5"
+        
       />
       <button onClick={handleclick}>Shoot</button>
 
       <div className="main_div">
         <div className="div1">
           {arr1.map((id) => {
-            return <Circle colo={colors[id]} id={id} handledelete={handledelete} />;
+            return <Circle key={id} colo={colors[id]} id={id} handledelete={handledelete} />;
           })}
         </div>
         <div className="div2">
           {arr2.map((index) => {
-            return <Circle colo={colors[index]} id={index} handledelete={() => { }}/>
+            return <Circle key={index} colo={colors[index]} id={index} handledelete={() => { }}/>
           })}
         </div>
       </div>
